@@ -1,0 +1,34 @@
+{
+  "name": "MediaProtocol",
+  "version": "0.1.0",
+  "private": true,
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate --network ropsten",
+    "reset": "truffle migrate --network ropsten --reset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MediaProtocol/MediaProtocol.git"
+  },
+  "homepage": "https://github.com/MediaProtocol/MediaProtocol.git#readme",
+  "dependencies": {
+    "truffle-hdwallet-provider": "0.0.3",
+    "truffle-hdwallet-provider-privkey": "^0.1.0",
+    "zeppelin-solidity": "^1.4.0"
+  },
+  "description": "Install dependencies and Truffle:",
+  "bugs": {
+    "url": "https://github.com/MediaProtocol/MediaProtocol.git/issues"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@digix/doxity": "^0.5.2",
+    "solidity-coverage": "^0.4.8"
+  }
+}
