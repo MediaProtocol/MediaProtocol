@@ -1,5 +1,6 @@
 var MediaToken = artifacts.require("MediaToken");
 var MediaManager = artifacts.require("MediaManager");
+var LimitingMediaManager = artifacts.require("LimitingMediaManager");
 var IdentityVerificationDispatcher = artifacts.require("IdentityVerificationDispatcher");
 var IdentityVerification = artifacts.require("IdentityVerification");
 var IdentityVerificationImplementation = artifacts.require("IdentityVerificationImplementation");

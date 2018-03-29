@@ -19,7 +19,7 @@
   "dependencies": {
     "truffle-hdwallet-provider": "0.0.3",
     "truffle-hdwallet-provider-privkey": "^0.1.0",
-    "zeppelin-solidity": "^1.4.0"
+    "zeppelin-solidity": "1.8.0"
   },
   "description": "Install dependencies and Truffle:",
   "bugs": {

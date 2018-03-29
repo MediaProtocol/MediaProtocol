@@ -7,6 +7,8 @@ var IdentityVerification = artifacts.require("IdentityVerification");
 
 var MediaToken = artifacts.require("MediaToken");
 var MediaManager = artifacts.require("MediaManager");
+var LimitingMediaManager = artifacts.require("LimitingMediaManager");
+
 var Promotions = artifacts.require("Promotions");
 var PromotionsDispatcher = artifacts.require("PromotionsDispatcher");
 var PromotionsImplementation = artifacts.require("PromotionsImplementation");
@@ -50,6 +52,8 @@ contract('MediaTokenTest', function(accounts) {
         //now get the management contract and run some transfers...
         let mc = MediaManager.at(await mt.managementContract());
 
+
+
         await mc.transferFrom(web3.eth.accounts[1], web3.eth.accounts[2], 50000000000000000000000);
         if( !(await mt.balanceOf(web3.eth.accounts[1])).equals("50000000000000000000000") )
             throw new Error("Balance not euqal 4");
@@ -70,6 +74,12 @@ contract('MediaTokenTest', function(accounts) {
         await mt.transferFrom(web3.eth.accounts[0], web3.eth.accounts[5], "100", {from: web3.eth.accounts[4]});
         await mt.approveRecurrent(web3.eth.accounts[4], 0, 3);
         await assertRevert(mt.transferFrom(web3.eth.accounts[0], web3.eth.accounts[4], "100", {from: web3.eth.accounts[4]}));
+
+        let lmm = await LimitingMediaManager.new(mc.address, web3.eth.accounts[1], 100 );
+        await mc.transferOwnership(lmm.address);
+        await assertRevert(mc.transferFrom(web3.eth.accounts[1], web3.eth.accounts[2], 50000000000000000000000));
+        await assertRevert(lmm.transferFrom(web3.eth.accounts[1], web3.eth.accounts[2], 50000000000000000000000),{from: web3.eth.accounts[1]});
+        await lmm.transferFrom(web3.eth.accounts[1], web3.eth.accounts[2], 50, {from: web3.eth.accounts[1]});
 
     });//*/
 });
